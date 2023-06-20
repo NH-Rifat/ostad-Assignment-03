@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Change Text Color Example</title>
+    <style>
+      .classA {
+        color: blue;
+      }
+
+      .classB {
+        color: green;
+      }
+
+      #paragraph3 {
+        color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="classA">Paragraph 1</p>
+    <p class="classA">Paragraph 2</p>
+    <p class="classB" id="paragraph3">Paragraph 3</p>
+    <p>Paragraph 4</p>
+    <p class="classA">Paragraph 5</p>
+
+    <script>
+      function changeTextColor() {
+        var paragraphs = document.querySelectorAll(".classA");
+
+        for (var i = 0; i < paragraphs.length; i++) {
+          paragraphs[i].style.color = "red";
+        }
+      }
+
+      changeTextColor();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Validation Example</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+    <script>
+      function validateForm() {
+        // Clear any previous error messages
+        const errorMessages = document.querySelectorAll(".error");
+        errorMessages.forEach((element) => {
+          element.textContent = "";
+        });
+
+        // Retrieve form field values
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const confirmPasswordInput = document.getElementById("confirmPassword");
+
+        // Validate Name field
+        const nameValue = nameInput.value.trim();
+        if (nameValue === "") {
+          displayError(nameInput, "Name is required.");
+          return false;
+        }
+        if (!/^[a-zA-Z]+$/.test(nameValue)) {
+          displayError(nameInput, "Name should contain only letters.");
+          return false;
+        }
+
+        // Validate Email field
+        const emailValue = emailInput.value.trim();
+        if (emailValue === "") {
+          displayError(emailInput, "Email is required.");
+          return false;
+        }
+        if (!/^[\w.-]+@[a-zA-Z_-]+?\.[a-zA-Z]{2,}$/.test(emailValue)) {
+          displayError(emailInput, "Invalid email address.");
+          return false;
+        }
+
+        // Validate Password field
+        const passwordValue = passwordInput.value;
+        if (passwordValue === "") {
+          displayError(passwordInput, "Password is required.");
+          return false;
+        }
+        if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(passwordValue)) {
+          displayError(
+            passwordInput,
+            "Password should have a minimum length of 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit."
+          );
+          return false;
+        }
+
+        // Validate Confirm Password field
+        const confirmPasswordValue = confirmPasswordInput.value;
+        if (confirmPasswordValue === "") {
+          displayError(confirmPasswordInput, "Confirm Password is required.");
+          return false;
+        }
+        if (confirmPasswordValue !== passwordValue) {
+          displayError(confirmPasswordInput, "Passwords do not match.");
+          return false;
+        }
+
+        // Form validation succeeded
+        return true;
+      }
+
+      function displayError(inputElement, errorMessage) {
+        const errorElement = inputElement.nextElementSibling;
+        errorElement.textContent = errorMessage;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Form Validation Example</h1>
+    <form onsubmit="return validateForm()">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" />
+        <span class="error"></span>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" />
+        <span class="error"></span>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        <span class="error"></span>
+      </div>
+      <div>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" />
+        <span class="error"></span>
+      </div>
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event Handling Example</title>
+    <script>
+      function handleClick(event) {
+        const x = event.clientX;
+        const y = event.clientY;
+        alert(`Clicked at coordinates: (${x}, ${y})`);
+      }
+
+      function handleKeyPress(event) {
+        const keyCode = event.keyCode || event.which;
+        alert(`Pressed key code: ${keyCode}`);
+      }
+
+      function changeImageSource() {
+        const image = document.getElementById("myImage");
+        image.src = "images/img-01.jpg";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Event Handling Example</h1>
+    <p>Click anywhere on the page to display coordinates.</p>
+    <p>Press any key on the keyboard to display the key code.</p>
+
+    <img
+      id="myImage"
+      src="images/img-02.jpg"
+      onmouseover="changeImageSource()"
+      width="300"
+      height="200"
+      alt="Image"
+    />
+
+    <script>
+      document.addEventListener("click", handleClick);
+      document.addEventListener("keydown", handleKeyPress);
+    </script>
+  </body>
+</html>
